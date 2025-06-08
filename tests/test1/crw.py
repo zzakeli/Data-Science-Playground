@@ -13,7 +13,7 @@ def createSeries():
     print(se)
 
 def readExcel():
-    df_sample = pd.read_excel("sample.xlsx")
+    df_sample = pd.read_excel("../../Creating Reading and Writing Data/datasets/sample.xlsx")
     size = df_sample.shape
     head = df_sample.head()
     print()
