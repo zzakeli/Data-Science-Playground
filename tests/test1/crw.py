@@ -25,6 +25,6 @@ def readExcel():
     print(df_sample)
     print()
 
-readExcel()
+#readExcel()
 #createSeries()
-#createDataFrame()
+createDataFrame()
