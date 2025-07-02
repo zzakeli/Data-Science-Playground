@@ -20,12 +20,16 @@ def create_column():
     df = create_dataframe()
 
     average_list = []
-    for i in range(4 - 1):
+    row = 5
+    col = 4
 
-        average_list[i] = df.iloc[i,]
+    for i in range(row):
+        sum = 0
+        for j in range(col - 1):
+            sum += df.iloc[i,j + 1]
+        average_list.append(sum/(col - 1))
 
     df['Average'] = average_list
-
     print(df)
 
 create_column()
