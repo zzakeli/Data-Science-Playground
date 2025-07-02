@@ -27,7 +27,36 @@ def average_rating():
         sum += df.iloc[i,col - 1]
 
     average = sum/row
-    print(average)
+    print('Average Rating:',average)
+
+def showActionMovies():
+    df = create_dataframe()
+    action_movies = df.loc[(df['Genre'] == 'Action') & (df['Rating'] >= 8)]
+
+    print(action_movies)
+
+def sort_descending():
+    df = create_dataframe()
+    sorted = df.sort_values(by='Rating', ascending=False)
+    
+    print(sorted)
+
+def add_recommendation():
+    df = create_dataframe()
+
+    recommendation = []
+    row = 5
+    col = 4
+    for i in range(row):
+        rating = df.iloc[i, col - 1]
+        if rating >= 7.5:
+            recommendation.append('Yes')
+        else:
+            recommendation.append('No')
+
+    df['Recommended'] = recommendation
+
+    print(df)
 
 
 print()
@@ -36,4 +65,9 @@ print()
 display_movie_released()
 print()
 average_rating()
-
+print()
+showActionMovies()
+print()
+sort_descending()
+print()
+add_recommendation()
