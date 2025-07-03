@@ -19,8 +19,16 @@ def compute_average_salary():
 
 def compute_dept_average_salary():
     df = create_dataframe()
-
+    average_salary = df.groupby('Department')['Salary'].mean()
     print('Average Department Salary:', average_salary)
+
+def count_employees_per_dept():
+    df = create_dataframe()
+
+    dept_count = df.Department.value_counts()
+
+    print(dept_count)
+
 def main():
     print()
     print(create_dataframe())
@@ -29,6 +37,7 @@ def main():
     print()
     compute_dept_average_salary()
     print()
+    count_employees_per_dept()
 
 if __name__ == "__main__":
     main()
