@@ -67,7 +67,22 @@ def show_two_last_students():
 
     print(df.iloc[3:,1::2])
 
+#not done yet
+def show_topper():
+    df = create_dataframe()
+    row = 5
+    col = 4
+    #top = df.iloc[0,1]
+    for i in range(row):
+        sum = 0
+        for j in range(col - 1):
+            sum += df.iloc[i, j + 1]
 
+        average = sum / (col - 1)
+
+    df.loc[average == top,'Topper'] = 'Yes'
+    df.loc[average != top,'Topper'] = 'No'
+    print(df)
 
 def main():
     print(create_dataframe())
@@ -83,6 +98,8 @@ def main():
     create_column()
     print()
     show_two_last_students()
+    print()
+    show_topper()
 
 
 if __name__ == "__main__":
