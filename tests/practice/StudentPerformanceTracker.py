@@ -42,18 +42,48 @@ def change_english_score():
 def create_column():
     df = create_dataframe()
 
-    df.loc[]
+    #row = 5
+    #col = 4print
+    #passed = []
+    #for i in range(row):
+    #    sum = 0
+    #    for j in range(col - 1):
+    #        sum += df.iloc[i,j + 1]
+
+    #    average = sum/(col - 1)
+
+    #    if average >= 75:
+     #       passed.append("Yes")
+     #   else:
+    #        passed.append("No")
+
+    df.loc[((df.Math + df.Science + df.English) / 3) >= 90,'Passed'] = 'Yes'
+    df.loc[((df.Math + df.Science + df.English) / 3) < 90, 'Passed'] = 'No'
 
     print(df)
 
-print(create_dataframe())
-print()
-show_first_three_student_scores()
-print()
-show_science_score()
-print()
-change_score()
-print()
-change_english_score()
-print()
-create_column()
+def show_two_last_students():
+    df = create_dataframe()
+
+    print(df.iloc[3:,1::2])
+
+
+
+def main():
+    print(create_dataframe())
+    print()
+    show_first_three_student_scores()
+    print()
+    show_science_score()
+    print()
+    change_score()
+    print()
+    change_english_score()
+    print()
+    create_column()
+    print()
+    show_two_last_students()
+
+
+if __name__ == "__main__":
+    main()
