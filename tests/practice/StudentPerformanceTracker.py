@@ -72,16 +72,25 @@ def show_topper():
     df = create_dataframe()
     row = 5
     col = 4
-    #top = df.iloc[0,1]
+    averages = []
     for i in range(row):
         sum = 0
         for j in range(col - 1):
             sum += df.iloc[i, j + 1]
 
         average = sum / (col - 1)
+        averages.append(average)
 
-    df.loc[average == top,'Topper'] = 'Yes'
-    df.loc[average != top,'Topper'] = 'No'
+    top = averages[0]
+    for i in range(len(averages)):
+        if averages[i] > top:
+            top = averages[i]
+
+    df['Average'] = averages
+
+    df.loc[top == df.Average,'Topper'] = 'Yes'
+    df.loc[top != df.Average,'Topper'] = 'No'
+
     print(df)
 
 def main():
