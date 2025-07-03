@@ -29,6 +29,24 @@ def count_employees_per_dept():
 
     print(dept_count)
 
+def define_seniority(x,df):
+    i = 0
+    if x > 3:
+        df.at[i,'Seniority'] = 'Junior'
+    if x >= 3 and x <= 6:
+        df.at[i,'Seniority'] = 'Mid'
+    else:
+        df.at[i,'Seniority'] = 'Senior'
+
+    i+=1
+
+def add_column():
+    df = create_dataframe()
+    df['Seniority'] = None
+    df.YearsAtCompany.map(lambda x: define_seniority(x,df))
+
+    print(df)
+
 def main():
     print()
     print(create_dataframe())
@@ -38,6 +56,8 @@ def main():
     compute_dept_average_salary()
     print()
     count_employees_per_dept()
+    print()
+    add_column()
 
 if __name__ == "__main__":
     main()
