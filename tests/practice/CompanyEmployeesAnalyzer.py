@@ -29,35 +29,58 @@ def count_employees_per_dept():
 
     print(dept_count)
 
-def define_seniority(x,df):
-    i = 0
-    if x > 3:
-        df.at[i,'Seniority'] = 'Junior'
+def define_seniority(x):
+    if x < 3:
+        return 'Junior'
     if x >= 3 and x <= 6:
-        df.at[i,'Seniority'] = 'Mid'
+        return 'Mid'
     else:
-        df.at[i,'Seniority'] = 'Senior'
+        return 'Senior'
 
-    i+=1
 
 def add_column():
     df = create_dataframe()
     df['Seniority'] = None
-    df.YearsAtCompany.map(lambda x: define_seniority(x,df))
+    df['Seniority'] = df.YearsAtCompany.map(define_seniority)
 
     print(df)
 
+def add_tax_column():
+    df = create_dataframe()
+    df['Tax'] = df.Salary.map(lambda salary: salary * 0.15)
+    print(df)
+
+def summary():
+    df = create_dataframe()
+
+    print('Summary')
+    print('Total no. of Employees:', df.Name.count())
+    print('Average years at Company:', df.YearsAtCompany.mean())
+    print('Total Salary Expense:', df.Salary.sum())
+
+def show_dept_highest_average_salary():
+    df = create_dataframe()
+
+    print('Department with highest average salary:',df.groupby('Department')['Salary'].mean().idxmax())
+
 def main():
-    print()
+    print('-----------------------------------------------------------')
     print(create_dataframe())
-    print()
+    print('-----------------------------------------------------------')
     compute_average_salary()
-    print()
+    print('-----------------------------------------------------------')
     compute_dept_average_salary()
-    print()
+    print('-----------------------------------------------------------')
     count_employees_per_dept()
-    print()
+    print('-----------------------------------------------------------')
     add_column()
+    print('-----------------------------------------------------------')
+    add_tax_column()
+    print('-----------------------------------------------------------')
+    summary()
+    print('-----------------------------------------------------------')
+    show_dept_highest_average_salary()
+    print('-----------------------------------------------------------')
 
 if __name__ == "__main__":
     main()
