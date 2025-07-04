@@ -3,6 +3,9 @@ import pandas as pd
 """
 This code provides CLI simulation of an Online Store Analysis.
 Dynamic approach to strengthen data analysis skills.
+
+This code doesn't have generic edge cases, it demonstrates the
+dynamic purpose of the code dynamically.
 """
 
 def initialize_dataframe():
@@ -56,37 +59,40 @@ def compute_total_revenue(df):
     df['Revenue'] = df['Price'] * df['Quantity']
     print('Generated Total Revenue Table:')
     print(df)
-    ...
+    
 def find_average_revenue(df):
     df['Revenue'] = df['Price'] * df['Quantity']
     print('Average Revenue Per Country:')
     print(df.groupby('Country')['Revenue'].mean())
-    ...
+    
 def count_product_sold(df):
     print('Product Sold per Category:')
     print(df.groupby('Category')['Quantity'].sum())
-    ...
+    
 def add_big_spender_column(df):
     df['Revenue'] = df['Price'] * df['Quantity']
     df['BigSpender'] = df.Revenue.map(is_big_spender)
 
     print('Generated Table w/ BigSpender Column:')
     print(df)
-    ...
+    
 def add_tax_column(df):
     df['Revenue'] = df['Price'] * df['Quantity']
     df['Tax'] = df['Revenue'] * 0.12
 
     print("Generated Table w/ Tax Column:")
     print(df)
-    ...
+    
 def get_total_revenue_generated(df):
     country = input("Enter a country: ")
-    df.loc[df.Country == country ,'Country']
+    df['Revenue'] = df['Price'] * df['Quantity']
 
-    ...
+    print(f"Total Revenue Generated for {country}:",df.groupby("Country")['Revenue'].sum().get(country,0))
+    
 def find_highest_average_order_revenue(df):
-    ...
+    df['Revenue'] = df['Price'] * df['Quantity']
+    print('Country w/ Highest Average Revenue:',df.groupby('Country')['Revenue'].mean().idxmax())
+    
 
 
 
